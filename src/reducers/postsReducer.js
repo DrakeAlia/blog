@@ -1,4 +1,4 @@
-export default () => {
+export default (state, action) => {
     return null;
 
     // bad!:
@@ -9,4 +9,13 @@ export default () => {
 
     // good:
     // return state + action
+
+    // bad!
+    // state[0] = "Sam"
+    // state.pop();
+    // state.push();
+
+    // bad!
+    // state.name = "Sam"
+    // state.age = 30;
 };
