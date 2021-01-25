@@ -1,6 +1,4 @@
-export default (state, action) => {
-    return null;
-
+export default (state = [], action) => {
     // bad!:
     // return document.querySelector('input');
 
@@ -18,4 +16,11 @@ export default (state, action) => {
     // bad!
     // state.name = "Sam"
     // state.age = 30;
+
+    switch (action.type) {
+        case 'FETECH_POSTS':
+            return action.payload;
+        default:
+          return state;
+    }
 };
