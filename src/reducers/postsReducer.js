@@ -18,12 +18,12 @@ export default (state = [], action) => {
     // state.age = 30;
 
     switch (action.type) {
-        case 'FETECH_POSTS':
-            return action.payload;
+        case 'FETCH_POSTS':
+          return action.payload;
         default:
           return state;
-    }
-};
+      }
+    };
 
 
 // =============================================================================
