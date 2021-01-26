@@ -3,9 +3,15 @@ import jsonPlaceholder from '../apis/jsonPlaceholder';
 
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
    await dispatch(fetchPosts());
+// Old and long  way of reducing fetch requests:
+//   const userIds = _.uniq(_.map(getState().posts, 'userId'));
+//   userIds.forEach(id => dispatch(fetchUser(id)));
 
-  const userIds = _.uniq(_.map(getState().posts, 'userId'));
-  userIds.forEach(id => dispatch(fetchUser(id)));
+  _.chain(getState().posts)
+  .map('userId')
+  .uniq()
+  .forEach(id => dispatch(fetchUser(id)))
+  .value()
 };
 
 export const fetchPosts = () => async (dispatch) => {
@@ -20,7 +26,6 @@ export const fetchUser = id => async dispatch => {
 
     dispatch({ type: 'FETCH_USER', payload: response.data });
 };
-
 
 // Memoize Version:
 // export const fetchUser = (id) => dispatch => _fetchUser(id, dispatch);
